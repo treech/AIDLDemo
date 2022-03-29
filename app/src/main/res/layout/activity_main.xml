@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/startNotificationService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="start Service"
+        app:layout_constraintBottom_toTopOf="@id/stopNotificationService"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/stopNotificationService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="stop Service"
+        app:layout_constraintBottom_toTopOf="@id/showNotification"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/startNotificationService" />
+
+    <Button
+        android:id="@+id/showNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show Notification"
+        app:layout_constraintBottom_toTopOf="@id/clearNotification"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stopNotificationService" />
+
+    <Button
+        android:id="@+id/clearNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="clear Notification"
+        app:layout_constraintBottom_toTopOf="@id/showNotificationDemo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/showNotification" />
+
+    <Button
+        android:id="@+id/showNotificationDemo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show Notification Demo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clearNotification" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
