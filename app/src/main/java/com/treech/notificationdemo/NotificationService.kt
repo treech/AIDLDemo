@@ -16,12 +16,13 @@ class NotificationService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        Log.d("ygq","NotificationService onCreate")
+        Log.d("ygq", "NotificationService onCreate")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("ygq","NotificationService onDestroy")
+        queue.clear()
+        Log.d("ygq", "NotificationService onDestroy")
     }
 
     fun showKeyTravelerAlarmNotification() {
@@ -50,12 +51,6 @@ class NotificationService : Service() {
                 notificationManager.createNotificationChannel(channel)
             }
         }
-        val summaryNotificationBuilder: NotificationCompat.Builder = NotificationCompat.Builder(this, "bundle_channel_id")
-            .setGroup(bundle_notification_id)
-            .setContentTitle("This is content summary") //文本内容
-            .setContentText("this is title summary") //通知的时间
-            .setGroupSummary(true)
-            .setSmallIcon(R.mipmap.ic_logo)
         val notificationBuilder: NotificationCompat.Builder
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationBuilder = NotificationCompat.Builder(this, "channel_id")
@@ -80,28 +75,37 @@ class NotificationService : Service() {
                 .setGroup(bundle_notification_id)
                 .setGroupSummary(false)
         }
+        val summaryNotificationBuilder: NotificationCompat.Builder = NotificationCompat.Builder(this, "bundle_channel_id")
+            .setGroup(bundle_notification_id)
+            .setContentTitle("This is content summary") //文本内容
+            .setContentText("this is title summary") //通知的时间
+            .setGroupSummary(true)
+            .setSmallIcon(R.mipmap.ic_logo)
         queue.add(notifyId)
         notificationManager.notify(notifyId, notificationBuilder.build())
         notificationManager.notify(100, summaryNotificationBuilder.build())
     }
 
-
     private val serviceBinder = object : INotificationInterface.Stub() {
         override fun addNotify() {
-            Log.d("ygq","addNotify")
+            Log.d("ygq", "addNotify")
+            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            if (queue.size > 24) {
+                val removeNotifyId = queue.removeFirst()
+                notificationManager.cancel(removeNotifyId)
+            }
             showKeyTravelerAlarmNotification()
-            Log.d("ygq","addNotify queue size:${queue.size}")
+            Log.d("ygq", "addNotify queue size:${queue.size},active size:${notificationManager.activeNotifications.size}")
         }
 
         override fun consumeNotify(notifyId: Int) {
-            Log.d("ygq","consumeNotify：$notifyId")
+            Log.d("ygq", "consumeNotify：$notifyId")
             queue.remove(notifyId)
             val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.cancel(notifyId)
-            Log.d("ygq","consumeNotify queue size:${queue.size}")
+            Log.d("ygq", "consumeNotify queue size:${queue.size}")
         }
     }
-
 
     override fun onBind(intent: Intent?): IBinder {
         return serviceBinder

@@ -60,5 +60,9 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.showNotificationDemo).setOnClickListener {
             startActivity(Intent(this, NotificationActivity::class.java))
         }
+
+        findViewById<Button>(R.id.secondActivity).setOnClickListener {
+            startActivity(Intent(this, SecondActivity::class.java))
+        }
     }
 }

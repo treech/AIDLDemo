@@ -6,13 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World2222!"
+    <com.treech.notificationdemo.FaceDetectView
+        android:id="@+id/iv_scene_picture"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:fvRadius="10dp"
+        app:fv_fill_color="#F9F9F9"
+        app:fv_stroke_color="#DDDDDD"
+        app:fv_stroke_width="1dp"
+        app:layout_constraintBottom_toTopOf="@id/iv_scene_picture2"
+        app:layout_constraintDimensionRatio="H,634:390"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="percent" />
+
+    <com.treech.notificationdemo.RoundImageView
+        android:id="@+id/iv_scene_picture2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:fill_color="#F9F9F9"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintDimensionRatio="H,634:390"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_scene_picture"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="1"
+        app:radius="10dp"
+        app:stroke_color="#DDDDDD"
+        app:stroke_width="1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -51,9 +51,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="show Notification Demo"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/secondActivity"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/clearNotification" />
+
+    <Button
+        android:id="@+id/secondActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="go face recognize Activity"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/showNotificationDemo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

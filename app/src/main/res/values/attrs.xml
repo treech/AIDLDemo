@@ -1,0 +1,26 @@
+<resources>
+    <declare-styleable name="FaceDetectView">
+        <attr name="fvBorderColor" format="color" />
+        <attr name="fvBorderWidth" format="dimension" />
+        <attr name="fvRadius" format="dimension" />
+        <attr name="fv_left_top_radius" format="dimension" />
+        <attr name="fv_right_top_radius" format="dimension" />
+        <attr name="fv_right_bottom_radius" format="dimension" />
+        <attr name="fv_left_bottom_radius" format="dimension" />
+        <attr name="fv_fill_color" format="color" />
+        <attr name="fv_stroke_color" format="color" />
+        <attr name="fv_stroke_width" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundImageView">
+        <attr name="radius" format="dimension" />
+        <attr name="left_top_radius" format="dimension" />
+        <attr name="right_top_radius" format="dimension" />
+        <attr name="right_bottom_radius" format="dimension" />
+        <attr name="left_bottom_radius" format="dimension" />
+        <attr name="fill_color" format="color" />
+        <attr name="stroke_color" format="color" />
+        <attr name="stroke_width" format="dimension" />
+    </declare-styleable>
+
+</resources>
