@@ -219,6 +219,7 @@ class FaceDetectView @JvmOverloads constructor(
         val bitmap = previewBitmap ?: return
         var dw = width * 1.0f - strokeWidth * 2
         var dh = height * 1.0f - strokeWidth * 2
+//        var dh = dw * bitmap.height / bitmap.width
         if (dh > height - strokeWidth * 2) {
             dh = height * 1.0f - strokeWidth * 2
             dw = dh * bitmap.width / bitmap.height
