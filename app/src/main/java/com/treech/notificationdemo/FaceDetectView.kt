@@ -26,20 +26,20 @@ class FaceDetectView @JvmOverloads constructor(
 
     private var locations: List<String>? = null
 
-    private var mLeftTopRadius = 0f
-    private var mRightTopRadius = 0f
-    private var mRightBottomRadius = 0f
-    private var mLeftBottomRadius = 0f
+    private var leftTopRadius = 0f
+    private var rightTopRadius = 0f
+    private var rightBottomRadius = 0f
+    private var leftBottomRadius = 0f
 
-    private var mFillColor = Color.TRANSPARENT
-    private var mStrokeColor = Color.TRANSPARENT
-    private var mStrokeWidth = 0f
-    private val mFillPaint = Paint()
-    private val mStrokePaint = Paint()
+    private var fillColor = Color.TRANSPARENT
+    private var strokeColor = Color.TRANSPARENT
+    private var strokeWidth = 0f
+    private val fillPaint = Paint()
+    private val strokePaint = Paint()
     private var boxBorderWidth: Float
     private var boxBorderColor: Int
 
-    private val mPath = Path()
+    private val path = Path()
 
     private val paint = Paint()
 
@@ -76,13 +76,13 @@ class FaceDetectView @JvmOverloads constructor(
                 setLeftBottomRadius(radius)
             }
             if (hasValue(R.styleable.FaceDetectView_fv_fill_color)) {
-                mFillColor = getColor(R.styleable.FaceDetectView_fv_fill_color, mFillColor)
+                fillColor = getColor(R.styleable.FaceDetectView_fv_fill_color, fillColor)
             }
             if (hasValue(R.styleable.FaceDetectView_fv_stroke_color)) {
-                mStrokeColor = getColor(R.styleable.FaceDetectView_fv_stroke_color, mStrokeColor)
+                strokeColor = getColor(R.styleable.FaceDetectView_fv_stroke_color, strokeColor)
             }
             if (hasValue(R.styleable.FaceDetectView_fv_stroke_width)) {
-                mStrokeWidth = getDimension(R.styleable.FaceDetectView_fv_stroke_width, 0f)
+                strokeWidth = getDimension(R.styleable.FaceDetectView_fv_stroke_width, 0f)
             }
             recycle()
         }
@@ -95,102 +95,102 @@ class FaceDetectView @JvmOverloads constructor(
             color = boxBorderColor
             strokeWidth = boxBorderWidth
         }
-        mFillPaint.style = Paint.Style.FILL
-        mFillPaint.isAntiAlias = true
-        mFillPaint.color = mFillColor
-        mStrokePaint.style = Paint.Style.STROKE
-        mStrokePaint.isAntiAlias = true
-        mStrokePaint.color = mStrokeColor
+        fillPaint.style = Paint.Style.FILL
+        fillPaint.isAntiAlias = true
+        fillPaint.color = fillColor
+        strokePaint.style = Paint.Style.STROKE
+        strokePaint.isAntiAlias = true
+        strokePaint.color = strokeColor
         // Stroke是沿着最外层边界画的，有一半会延伸到可视界面以外
         // 此处手动设置两倍的StrokeWidth就是为了达到边缘显示效果
-        mStrokePaint.strokeWidth = mStrokeWidth * 2
+        strokePaint.strokeWidth = strokeWidth * 2
     }
 
     @Px
     fun getLeftTopRadius(): Float {
-        return mLeftTopRadius
+        return leftTopRadius
     }
 
     fun setLeftTopRadius(@Px leftTopRadius: Float) {
-        if (mLeftTopRadius != leftTopRadius) {
-            mLeftTopRadius = leftTopRadius
+        if (this.leftTopRadius != leftTopRadius) {
+            this.leftTopRadius = leftTopRadius
             ViewCompat.postInvalidateOnAnimation(this)
         }
     }
 
     @Px
     fun getRightTopRadius(): Float {
-        return mRightTopRadius
+        return rightTopRadius
     }
 
     fun setRightTopRadius(@Px rightTopRadius: Float) {
-        if (mRightTopRadius != rightTopRadius) {
-            mRightTopRadius = rightTopRadius
+        if (this.rightTopRadius != rightTopRadius) {
+            this.rightTopRadius = rightTopRadius
             ViewCompat.postInvalidateOnAnimation(this)
         }
     }
 
     @Px
     fun getRightBottomRadius(): Float {
-        return mRightBottomRadius
+        return rightBottomRadius
     }
 
     fun setRightBottomRadius(@Px rightBottomRadius: Float) {
-        if (mRightBottomRadius != rightBottomRadius) {
-            mRightBottomRadius = rightBottomRadius
+        if (this.rightBottomRadius != rightBottomRadius) {
+            this.rightBottomRadius = rightBottomRadius
             ViewCompat.postInvalidateOnAnimation(this)
         }
     }
 
     @Px
     fun getLeftBottomRadius(): Float {
-        return mLeftBottomRadius
+        return leftBottomRadius
     }
 
     fun setLeftBottomRadius(@Px leftBottomRadius: Float) {
-        if (mLeftBottomRadius != leftBottomRadius) {
-            mLeftBottomRadius = leftBottomRadius
+        if (this.leftBottomRadius != leftBottomRadius) {
+            this.leftBottomRadius = leftBottomRadius
             ViewCompat.postInvalidateOnAnimation(this)
         }
     }
 
     @ColorInt
     fun getFillColor(): Int {
-        return mFillColor
+        return fillColor
     }
 
     fun setFillColor(@ColorInt fillColor: Int) {
-        if (mFillColor != fillColor) {
-            mFillColor = fillColor
-            mFillPaint.color = mFillColor
+        if (this.fillColor != fillColor) {
+            this.fillColor = fillColor
+            fillPaint.color = this.fillColor
             ViewCompat.postInvalidateOnAnimation(this)
         }
     }
 
     @ColorInt
     fun getStrokeColor(): Int {
-        return mStrokeColor
+        return strokeColor
     }
 
     fun setStrokeColor(@ColorInt strokeColor: Int) {
-        if (mStrokeColor != strokeColor) {
-            mStrokeColor = strokeColor
-            mStrokePaint.color = mStrokeColor
+        if (this.strokeColor != strokeColor) {
+            this.strokeColor = strokeColor
+            strokePaint.color = this.strokeColor
             ViewCompat.postInvalidateOnAnimation(this)
         }
     }
 
     @Px
     fun getStrokeWidth(): Int {
-        return mStrokeWidth.toInt()
+        return strokeWidth.toInt()
     }
 
     fun setStrokeWidth(@Px strokeWidth: Float) {
-        if (mStrokeWidth != strokeWidth) {
-            mStrokeWidth = strokeWidth.toFloat()
+        if (this.strokeWidth != strokeWidth) {
+            this.strokeWidth = strokeWidth.toFloat()
             // Stroke是沿着最外层边界画的，有一半会延伸到可视界面以外
             // 此处手动设置两倍的StrokeWidth就是为了达到边缘显示效果
-            mStrokePaint.strokeWidth = mStrokeWidth * 2
+            strokePaint.strokeWidth = this.strokeWidth * 2
             ViewCompat.postInvalidateOnAnimation(this)
         }
     }
@@ -217,10 +217,10 @@ class FaceDetectView @JvmOverloads constructor(
 
     private fun calculatePreviewImageRect() {
         val bitmap = previewBitmap ?: return
-        var dw = width * 1.0f - mStrokeWidth * 2
-        var dh = height * 1.0f - mStrokeWidth * 2
-        if (dh > height - mStrokeWidth * 2) {
-            dh = height * 1.0f - mStrokeWidth * 2
+        var dw = width * 1.0f - strokeWidth * 2
+        var dh = height * 1.0f - strokeWidth * 2
+        if (dh > height - strokeWidth * 2) {
+            dh = height * 1.0f - strokeWidth * 2
             dw = dh * bitmap.width / bitmap.height
         }
 
@@ -233,35 +233,35 @@ class FaceDetectView @JvmOverloads constructor(
     }
 
     override fun onDraw(canvas: Canvas) {
-        val maxLeft = max(mLeftTopRadius, mLeftBottomRadius)
-        val maxRight = max(mRightTopRadius, mRightBottomRadius)
+        val maxLeft = max(leftTopRadius, leftBottomRadius)
+        val maxRight = max(rightTopRadius, rightBottomRadius)
         val minWidth = maxLeft + maxRight
-        val maxTop = max(mLeftTopRadius, mRightTopRadius)
-        val maxBottom = max(mLeftBottomRadius, mRightBottomRadius)
+        val maxTop = max(leftTopRadius, rightTopRadius)
+        val maxBottom = max(leftBottomRadius, rightBottomRadius)
         val minHeight = maxTop + maxBottom
         // 只有图片的宽高大于设置的圆角距离的时候才进行裁剪
         if (width >= minWidth && height >= minHeight) {
-            mPath.reset()
+            path.reset()
             // 四个角：右上，右下，左下，左上
-            mPath.moveTo(mLeftTopRadius, 0f)
-            mPath.lineTo((width - mRightTopRadius), 0f)
-            mPath.quadTo(width.toFloat(), 0f, width.toFloat(), mRightTopRadius)
-            mPath.lineTo(width.toFloat(), (height - mRightBottomRadius))
-            mPath.quadTo(width.toFloat(), height.toFloat(), (width - mRightBottomRadius), height.toFloat())
-            mPath.lineTo(mLeftBottomRadius, height.toFloat())
-            mPath.quadTo(0f, height.toFloat(), 0f, (height - mLeftBottomRadius))
-            mPath.lineTo(0f, mLeftTopRadius)
-            mPath.quadTo(0f, 0f, mLeftTopRadius, 0f)
-            mPath.close()
-            canvas.clipPath(mPath)
+            path.moveTo(leftTopRadius, 0f)
+            path.lineTo((width - rightTopRadius), 0f)
+            path.quadTo(width.toFloat(), 0f, width.toFloat(), rightTopRadius)
+            path.lineTo(width.toFloat(), (height - rightBottomRadius))
+            path.quadTo(width.toFloat(), height.toFloat(), (width - rightBottomRadius), height.toFloat())
+            path.lineTo(leftBottomRadius, height.toFloat())
+            path.quadTo(0f, height.toFloat(), 0f, (height - leftBottomRadius))
+            path.lineTo(0f, leftTopRadius)
+            path.quadTo(0f, 0f, leftTopRadius, 0f)
+            path.close()
+            canvas.clipPath(path)
         }
-        if (mFillColor != Color.TRANSPARENT) {
-            canvas.drawPath(mPath, mFillPaint)
+        if (fillColor != Color.TRANSPARENT) {
+            canvas.drawPath(path, fillPaint)
         }
         super.onDraw(canvas)
 
-        if (mStrokeWidth > 0) {
-            canvas.drawPath(mPath, mStrokePaint)
+        if (strokeWidth > 0) {
+            canvas.drawPath(path, strokePaint)
         }
 
         safeLet(locations, previewBitmap) { coordinates, bitmap ->
